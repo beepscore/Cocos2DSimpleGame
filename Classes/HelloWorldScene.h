@@ -1,5 +1,5 @@
 //
-//  HelloWorldLayer.h
+//  HelloWorldScene.h
 //  Cocos2DSimpleGame
 //
 //  Created by Steve Baker on 10/8/10.
@@ -11,7 +11,7 @@
 #import "cocos2d.h"
 
 // HelloWorld Layer
-@interface HelloWorld : CCLayer
+@interface HelloWorldScene : CCLayer
 {
 }
 

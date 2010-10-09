@@ -1,5 +1,5 @@
 //
-//  HelloWorldLayer.m
+//  HelloWorldScene.m
 //  Cocos2DSimpleGame
 //
 //  Created by Steve Baker on 10/8/10.
@@ -10,7 +10,7 @@
 #import "HelloWorldScene.h"
 
 // HelloWorld implementation
-@implementation HelloWorld
+@implementation HelloWorldScene
 
 +(id) scene
 {
@@ -18,7 +18,7 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorld *layer = [HelloWorld node];
+	HelloWorldScene *layer = [HelloWorldScene node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
