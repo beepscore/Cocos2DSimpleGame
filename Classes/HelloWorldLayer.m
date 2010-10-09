@@ -32,7 +32,7 @@
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
-    if( (self = [super init]) ) {
+    if( (self = [super initWithColor:ccc4(255,255,255,255)]) ) {
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         CCSprite *player = [CCSprite spriteWithFile:@"Player.png" 
                                                rect:CGRectMake(0, 0, 27, 40)];
