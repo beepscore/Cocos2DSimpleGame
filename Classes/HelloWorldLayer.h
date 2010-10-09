@@ -12,6 +12,8 @@
 
 @interface HelloWorldLayer : CCColorLayer
 {
+    NSMutableArray *_targets;
+    NSMutableArray *_projectiles;
 }
 
 // returns a Scene that contains the HelloWorldLayer as the only child

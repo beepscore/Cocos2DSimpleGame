@@ -37,6 +37,9 @@
         
 		[self schedule:@selector(gameLogic:) interval:1.0];
         self.isTouchEnabled = YES;
+        
+        _targets = [[NSMutableArray alloc] init];
+        _projectiles = [[NSMutableArray alloc] init];        
     }
 	return self;
 }
@@ -47,6 +50,11 @@
 	// in case you have something to dealloc, do it in this method
 	// in this particular example nothing needs to be released.
 	// cocos2d will automatically release all the children (Label)
+    
+    [_targets release];
+    _targets = nil;
+    [_projectiles release];
+    _projectiles = nil;
 	
 	// don't forget to call "super dealloc"
 	[super dealloc];
@@ -71,7 +79,14 @@
 
 
 -(void)spriteMoveFinished:(id)sender {
+    
     CCSprite *sprite = (CCSprite *)sender;
+    
+    if (sprite.tag == 1) { // target
+        [_targets removeObject:sprite];
+    } else if (sprite.tag == 2) { // projectile
+        [_projectiles removeObject:sprite];
+    }
     [self removeChild:sprite cleanup:YES];
 }
 
@@ -92,6 +107,9 @@
     // and along a random position along the Y axis as calculated above
     target.position = ccp(winSize.width + (target.contentSize.width/2), actualY);
     [self addChild:target];
+    
+    target.tag = 1;
+    [_targets addObject:target];
     
     // Determine speed of the target
     int minDuration = 2.0;
@@ -141,6 +159,9 @@
     
     // Ok to add now - we've double checked position
     [self addChild:projectile];
+    
+    projectile.tag = 2;
+    [_projectiles addObject:projectile];
     
     // Determine where we wish to shoot the projectile to
     int realX = winSize.width + (projectile.contentSize.width/2);
