@@ -22,22 +22,8 @@
 // HelloWorld implementation
 @implementation HelloWorldLayer
 
-+(id) scene
-{
-	// 'scene' is an autorelease object.
-	CCScene *scene = [CCScene node];
-	
-	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
-	
-	// add layer as a child to scene
-	[scene addChild: layer];
-	
-	// return the scene
-	return scene;
-}
 
-// on "init" you need to initialize your instance
+// initialize instance
 -(id) init
 {
 	// always call "super" init
@@ -55,8 +41,19 @@
 }
 
 
--(void)gameLogic:(ccTime)dt {
-    [self addTarget];
++(id) scene
+{
+	// 'scene' is an autorelease object.
+	CCScene *scene = [CCScene node];
+	
+	// 'layer' is an autorelease object.
+	HelloWorldLayer *layer = [HelloWorldLayer node];
+	
+	// add layer as a child to scene
+	[scene addChild: layer];
+	
+	// return the scene
+	return scene;
 }
 
 
@@ -90,18 +87,26 @@
     int actualDuration = (arc4random() % rangeDuration) + minDuration;
     
     // Create the actions
-    // move off the left side of the screen
+    // the object actionMove will move the target off the left side of the screen
     id actionMove = [CCMoveTo actionWithDuration:actualDuration 
                                         position:ccp(-target.contentSize.width/2, actualY)];
     
+    // the object actionMoveDone is a CCCallFuncN, and will call spriteMoveFinished:
     id actionMoveDone = [CCCallFuncN actionWithTarget:self 
                                              selector:@selector(spriteMoveFinished:)];
-    
+
+    // run the sequence of actions
     [target runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];    
 }
 
 
-// on "dealloc" you need to release all your retained objects
+// add a new target every dt of time
+-(void)gameLogic:(ccTime)dt {
+    [self addTarget];
+}
+
+
+// release all retained objects
 - (void) dealloc
 {
 	// in case you have something to dealloc, do it in this method
