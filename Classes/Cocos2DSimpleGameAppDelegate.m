@@ -10,7 +10,7 @@
 
 #import "Cocos2DSimpleGameAppDelegate.h"
 #import "GameConfig.h"
-#import "HelloWorldScene.h"
+#import "HelloWorldLayer.h"
 #import "RootViewController.h"
 
 @implementation Cocos2DSimpleGameAppDelegate
@@ -81,7 +81,7 @@
 	
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldScene scene]];		
+	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];		
 }
 
 
