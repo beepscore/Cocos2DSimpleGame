@@ -14,7 +14,7 @@
 {
     NSMutableArray *gameTargets;
     NSMutableArray *gameProjectiles;
-    int _projectilesDestroyed;
+    int projectilesDestroyed;
 }
 
 // returns a Scene that contains the HelloWorldLayer as the only child

@@ -91,7 +91,7 @@
     if (sprite.tag == 1) { // target
         [gameTargets removeObject:sprite];
         GameOverScene *gameOverScene = [GameOverScene node];
-        [gameOverScene.layer.label setString:@"You Lose :["];
+        [gameOverScene.gameOverLayer.playerResultLabel setString:@"You Lose :["];
         [[CCDirector sharedDirector] replaceScene:gameOverScene];
     } else if (sprite.tag == 2) { // projectile
         [gameProjectiles removeObject:sprite];
@@ -220,11 +220,11 @@
             [gameTargets removeObject:target];
             [self removeChild:target cleanup:YES];
             
-            _projectilesDestroyed++;
-            // if (_projectilesDestroyed > 30) {
-            if (_projectilesDestroyed > 20) {
+            projectilesDestroyed++;
+            // if (projectilesDestroyed > 30) {
+            if (projectilesDestroyed > 20) {
                 GameOverScene *gameOverScene = [GameOverScene node];
-                [gameOverScene.layer.label setString:@"You Win!"];
+                [gameOverScene.gameOverLayer.playerResultLabel setString:@"You Win!"];
                 [[CCDirector sharedDirector] replaceScene:gameOverScene];
             }
             

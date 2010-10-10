@@ -10,20 +10,20 @@
 #import "GameOverLayer.h"
 
 @implementation GameOverScene
-@synthesize layer = _layer;
+@synthesize gameOverLayer;
 
 - (id)init {
     
     if ((self = [super init])) {
-        self.layer = [GameOverLayer node];
-        [self addChild:_layer];
+        self.gameOverLayer = [GameOverLayer node];
+        [self addChild:gameOverLayer];
     }
     return self;
 }
 
 - (void)dealloc {
-    [_layer release];
-    _layer = nil;
+    [gameOverLayer release];
+    gameOverLayer = nil;
     [super dealloc];
 }
 

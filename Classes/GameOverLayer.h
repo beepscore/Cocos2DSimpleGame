@@ -10,7 +10,7 @@
 
 @interface GameOverLayer : CCColorLayer {
     // replaced obsolete class CCLabel used in tutorial  
-    CCLabelTTF *_label;
+    CCLabelTTF *playerResultLabel;
 }
-@property (nonatomic, retain) CCLabelTTF *label;
+@property (nonatomic, retain) CCLabelTTF *playerResultLabel;
 @end

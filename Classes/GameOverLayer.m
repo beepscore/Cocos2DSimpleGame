@@ -10,7 +10,7 @@
 #import "HelloWorldLayer.h"
 
 @implementation GameOverLayer
-@synthesize label = _label;
+@synthesize playerResultLabel;
 
 -(id) init
 {
@@ -18,10 +18,10 @@
         
         // put a label in the middle of the screen
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        self.label = [CCLabelTTF labelWithString:@"" fontName:@"Arial" fontSize:32];
-        _label.color = ccc3(0,0,0);
-        _label.position = ccp(winSize.width/2, winSize.height/2);
-        [self addChild:_label];
+        self.playerResultLabel = [CCLabelTTF labelWithString:@"" fontName:@"Arial" fontSize:32];
+        playerResultLabel.color = ccc3(0,0,0);
+        playerResultLabel.position = ccp(winSize.width/2, winSize.height/2);
+        [self addChild:playerResultLabel];
         
         // transition back to HelloWorld scene
         [self runAction:[CCSequence actions:
@@ -40,8 +40,8 @@
 }
 
 - (void)dealloc {
-    [_label release];
-    _label = nil;
+    [playerResultLabel release];
+    playerResultLabel = nil;
     [super dealloc];
 }
 

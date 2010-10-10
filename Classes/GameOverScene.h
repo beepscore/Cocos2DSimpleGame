@@ -10,7 +10,7 @@
 @class GameOverLayer;
 
 @interface GameOverScene : CCScene {
-    GameOverLayer *_layer;
+    GameOverLayer *gameOverLayer;
 }
-@property (nonatomic, retain) GameOverLayer *layer;
+@property (nonatomic, retain) GameOverLayer *gameOverLayer;
 @end
