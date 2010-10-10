@@ -39,7 +39,8 @@
         self.isTouchEnabled = YES;
         
         _targets = [[NSMutableArray alloc] init];
-        _projectiles = [[NSMutableArray alloc] init];        
+        _projectiles = [[NSMutableArray alloc] init];
+        [self schedule:@selector(update:)];
     }
 	return self;
 }
@@ -182,6 +183,48 @@
                            [CCCallFuncN actionWithTarget:self selector:@selector(spriteMoveFinished:)],
                            nil]];
     
+}
+
+
+- (void)update:(ccTime)dt {
+    
+    NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
+    for (CCSprite *projectile in _projectiles) {
+        CGRect projectileRect = CGRectMake(
+                                           projectile.position.x - (projectile.contentSize.width/2), 
+                                           projectile.position.y - (projectile.contentSize.height/2), 
+                                           projectile.contentSize.width, 
+                                           projectile.contentSize.height);
+        
+        NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
+        for (CCSprite *target in _targets) {
+            CGRect targetRect = CGRectMake(
+                                           target.position.x - (target.contentSize.width/2), 
+                                           target.position.y - (target.contentSize.height/2), 
+                                           target.contentSize.width, 
+                                           target.contentSize.height);
+            
+            if (CGRectIntersectsRect(projectileRect, targetRect)) {
+                [targetsToDelete addObject:target];				
+            }						
+        }
+        
+        for (CCSprite *target in targetsToDelete) {
+            [_targets removeObject:target];
+            [self removeChild:target cleanup:YES];									
+        }
+        
+        if (targetsToDelete.count > 0) {
+            [projectilesToDelete addObject:projectile];
+        }
+        [targetsToDelete release];
+    }
+    
+    for (CCSprite *projectile in projectilesToDelete) {
+        [_projectiles removeObject:projectile];
+        [self removeChild:projectile cleanup:YES];
+    }
+    [projectilesToDelete release];
 }
 
 @end
