@@ -39,8 +39,8 @@
 		[self schedule:@selector(gameLogic:) interval:1.0];
         self.isTouchEnabled = YES;
         
-        _targets = [[NSMutableArray alloc] init];
-        _projectiles = [[NSMutableArray alloc] init];
+        gameTargets = [[NSMutableArray alloc] init];
+        gameProjectiles = [[NSMutableArray alloc] init];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
         [self schedule:@selector(update:)];
     }
@@ -54,10 +54,10 @@
 	// in this particular example nothing needs to be released.
 	// cocos2d will automatically release all the children (Label)
     
-    [_targets release];
-    _targets = nil;
-    [_projectiles release];
-    _projectiles = nil;
+    [gameTargets release];
+    gameTargets = nil;
+    [gameProjectiles release];
+    gameProjectiles = nil;
 	
 	// don't forget to call "super dealloc"
 	[super dealloc];
@@ -86,9 +86,9 @@
     CCSprite *sprite = (CCSprite *)sender;
     
     if (sprite.tag == 1) { // target
-        [_targets removeObject:sprite];
+        [gameTargets removeObject:sprite];
     } else if (sprite.tag == 2) { // projectile
-        [_projectiles removeObject:sprite];
+        [gameProjectiles removeObject:sprite];
     }
     [self removeChild:sprite cleanup:YES];
 }
@@ -112,7 +112,7 @@
     [self addChild:target];
     
     target.tag = 1;
-    [_targets addObject:target];
+    [gameTargets addObject:target];
     
     // Determine speed of the target
     int minDuration = 2.0;
@@ -164,7 +164,7 @@
     [self addChild:projectile];
     
     projectile.tag = 2;
-    [_projectiles addObject:projectile];
+    [gameProjectiles addObject:projectile];
     
     // Determine where we wish to shoot the projectile to
     int realX = winSize.width + (projectile.contentSize.width/2);
@@ -191,7 +191,7 @@
 - (void)update:(ccTime)dt {
     
     NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
-    for (CCSprite *projectile in _projectiles) {
+    for (CCSprite *projectile in gameProjectiles) {
         CGRect projectileRect = CGRectMake(
                                            projectile.position.x - (projectile.contentSize.width/2), 
                                            projectile.position.y - (projectile.contentSize.height/2), 
@@ -199,7 +199,7 @@
                                            projectile.contentSize.height);
         
         NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
-        for (CCSprite *target in _targets) {
+        for (CCSprite *target in gameTargets) {
             CGRect targetRect = CGRectMake(
                                            target.position.x - (target.contentSize.width/2), 
                                            target.position.y - (target.contentSize.height/2), 
@@ -212,7 +212,7 @@
         }
         
         for (CCSprite *target in targetsToDelete) {
-            [_targets removeObject:target];
+            [gameTargets removeObject:target];
             [self removeChild:target cleanup:YES];									
         }
         
@@ -223,7 +223,7 @@
     }
     
     for (CCSprite *projectile in projectilesToDelete) {
-        [_projectiles removeObject:projectile];
+        [gameProjectiles removeObject:projectile];
         [self removeChild:projectile cleanup:YES];
     }
     [projectilesToDelete release];
