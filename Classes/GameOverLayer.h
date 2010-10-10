@@ -9,8 +9,7 @@
 #import "cocos2d.h"
 
 @interface GameOverLayer : CCColorLayer {
-    // replaced obsolete class CCLabel used in tutorial  
-    CCLabelTTF *playerResultLabel;
 }
+// replaced obsolete class CCLabel used in tutorial  
 @property (nonatomic, retain) CCLabelTTF *playerResultLabel;
 @end
