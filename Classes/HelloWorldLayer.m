@@ -9,6 +9,8 @@
 // Import the interfaces
 #import "HelloWorldLayer.h"
 #import "SimpleAudioEngine.h"
+#import "GameOverScene.h"
+#import "GameOverLayer.h"
 
 // declare anonymous category for "private" methods, avoid showing in .h file
 // Note in Objective C no method is private, it can be called from elsewhere.
@@ -84,13 +86,16 @@
 -(void)spriteMoveFinished:(id)sender {
     
     CCSprite *sprite = (CCSprite *)sender;
+    [self removeChild:sprite cleanup:YES];
     
     if (sprite.tag == 1) { // target
         [gameTargets removeObject:sprite];
+        GameOverScene *gameOverScene = [GameOverScene node];
+        [gameOverScene.layer.label setString:@"You Lose :["];
+        [[CCDirector sharedDirector] replaceScene:gameOverScene];
     } else if (sprite.tag == 2) { // projectile
         [gameProjectiles removeObject:sprite];
     }
-    [self removeChild:sprite cleanup:YES];
 }
 
 
@@ -213,7 +218,16 @@
         
         for (CCSprite *target in targetsToDelete) {
             [gameTargets removeObject:target];
-            [self removeChild:target cleanup:YES];									
+            [self removeChild:target cleanup:YES];
+            
+            _projectilesDestroyed++;
+            // if (_projectilesDestroyed > 30) {
+            if (_projectilesDestroyed > 20) {
+                GameOverScene *gameOverScene = [GameOverScene node];
+                [gameOverScene.layer.label setString:@"You Win!"];
+                [[CCDirector sharedDirector] replaceScene:gameOverScene];
+            }
+            
         }
         
         if (targetsToDelete.count > 0) {

@@ -72,6 +72,8 @@
 		DCCBF1BB0F6022AE0040855A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BA0F6022AE0040855A /* OpenGLES.framework */; };
 		DCCBF1BD0F6022AE0040855A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BC0F6022AE0040855A /* QuartzCore.framework */; };
 		DCCBF1BF0F6022AE0040855A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BE0F6022AE0040855A /* UIKit.framework */; };
+		DE04441612616F730030937F /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE04441512616F730030937F /* GameOverLayer.m */; };
+		DE04441B126170150030937F /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE04441A126170150030937F /* GameOverScene.m */; };
 		DE0EC62F126023AD005CA7A5 /* README in Resources */ = {isa = PBXBuildFile; fileRef = DE0EC62E126023AD005CA7A5 /* README */; };
 		DE55430A12603FF900E26B4A /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = DE55430712603FF900E26B4A /* Projectile.png */; };
 		DE55430B12603FF900E26B4A /* Target.png in Resources */ = {isa = PBXBuildFile; fileRef = DE55430812603FF900E26B4A /* Target.png */; };
@@ -313,6 +315,10 @@
 		DCCBF1BA0F6022AE0040855A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DCCBF1BC0F6022AE0040855A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DCCBF1BE0F6022AE0040855A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DE04441412616F730030937F /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		DE04441512616F730030937F /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
+		DE044419126170150030937F /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		DE04441A126170150030937F /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		DE0EC62E126023AD005CA7A5 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		DE55430712603FF900E26B4A /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
 		DE55430812603FF900E26B4A /* Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Target.png; sourceTree = "<group>"; };
@@ -575,6 +581,10 @@
 				E0F80F5F120A0182005866B8 /* RootViewController.m */,
 				1F3B9A2C0EF2145700286867 /* Cocos2DSimpleGameAppDelegate.h */,
 				1F3B9A2B0EF2145700286867 /* Cocos2DSimpleGameAppDelegate.m */,
+				DE04441412616F730030937F /* GameOverLayer.h */,
+				DE04441512616F730030937F /* GameOverLayer.m */,
+				DE044419126170150030937F /* GameOverScene.h */,
+				DE04441A126170150030937F /* GameOverScene.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1092,6 +1102,8 @@
 				1F3B9A2D0EF2145700286867 /* Cocos2DSimpleGameAppDelegate.m in Sources */,
 				506EDC31102F528A00A389B3 /* HelloWorldLayer.m in Sources */,
 				E0F80F60120A0182005866B8 /* RootViewController.m in Sources */,
+				DE04441612616F730030937F /* GameOverLayer.m in Sources */,
+				DE04441B126170150030937F /* GameOverScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
