@@ -8,6 +8,7 @@
 
 // Import the interfaces
 #import "HelloWorldLayer.h"
+#import "SimpleAudioEngine.h"
 
 // declare anonymous category for "private" methods, avoid showing in .h file
 // Note in Objective C no method is private, it can be called from elsewhere.
@@ -40,6 +41,7 @@
         
         _targets = [[NSMutableArray alloc] init];
         _projectiles = [[NSMutableArray alloc] init];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
         [self schedule:@selector(update:)];
     }
 	return self;
@@ -182,7 +184,7 @@
                            [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
                            [CCCallFuncN actionWithTarget:self selector:@selector(spriteMoveFinished:)],
                            nil]];
-    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"pew-pew-lei.caf"];    
 }
 
 
